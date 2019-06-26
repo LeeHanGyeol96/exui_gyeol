@@ -93,12 +93,15 @@
         /* hsla( 0, 0%, 0% ) : hue(색상) 0~360 (색상 종류), 채도(saturation) 0-100% (흑백-컬러), 명도(lightness) 0-100% (밝기) */
         /* hsla( 0, 0%, 0%, 0 ) : 투명도 지정 가능 */
         #p1 {
-            text-decoration: none;
+            text-decoration: underline;
             /* text-align: 텍스트 내용 정렬 */
+            color:aqua;
         }
 
         #p2 {
+            color: aqua(0,255, 0, 0.5);
         }
+        
 
         #p3 {
         }
@@ -119,6 +122,9 @@
     </style>
 </head>
 <body>
+    다음으로 이동
+    <a href="https://www.daum.com"></a>
+    구글로 이동
     <p id="p1">
         <span class="s1">This is paragraph01.</span> 이것은 01번째 문단입니다.<br />
         <span class="s2">This is paragraph01.</span> 이것은 01번째 문단입니다.<br />
