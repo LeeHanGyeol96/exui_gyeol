@@ -45,12 +45,20 @@
         var saveBT = document.querySelector('#save');
 
         saveBT.onclick = function(){
-            var pno = pnoI.value;
-            var pname = pnameI.value;
-            var price = priceI.value;
+             var pno = pnoI.value;
+             var pname = pnameI.value;
+             var price = priceI.value;
 
-            prodList.push(pnoI, pnameI);
+            prodList.push(pnoI, pnameI, priceI);
+
+            tbo.innerHTML = '';
+        
+            for (var i = 0; i < prodList.length; i++){
+            var p = prodList[i];
+            prodsIn.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '<tr>';
+            }
         };
+        
 
     </script>
 </body>
