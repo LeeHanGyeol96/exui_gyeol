@@ -28,8 +28,35 @@
     <script>
         // 1. id 가 product 인 div 안에 있는 img 엘리먼트 클릭하면, 
         //  클릭한 img 엘리먼트와 동일한 엘리먼트를 id 가 cart 인 div 에 추가
+        var cartDiv = document.querySelector('#cart');
+        var prodList = document.querySelectorAll('#product img');
+        for (var i = 0; i < prodList.length; i++) {
+            var p = prodList[i];
+            p.onclick = function(){
+                // cartDiv.innerHTML += '<img src="'+this.src+'"/>';
+                var newIng = document.createElement('img'); //새 img 변수 저장
+                newIng.src = this.src;  //'<img src="'+this.src+'">'
+                cartDiv.appendChild(newIng);
+                // newIng.onclick = function(){
+                //     this.parentElement.removeChild(this); //클릭된 변수 = this,  this.parentElement 대신 cartDiv 넣어도 됨.
+                // }
+            }
+        }
+
         // 2. id 가 cart 인 div 안에 있는 img 엘리먼트 클릭하면, 
         //  클릭한 img 엘리먼트를 삭제
+        //    var imgList =  document.querySelectorAll('#cart img'); //장바구니안에 있는 img들 전부 클릭 상태로 변수에 저장
+        cartDiv.onclick = function(ev){
+            // console.log(this);           //cartDiv 엘리먼트
+            // console.log(ev.currentTarget);  //cartDiv
+            console.log(ev.target);         //클릭된 img 엘리먼트
+            if(ev.target.nodeName === 'IMG'){
+            //클릭된 img엘리먼트의 부모엘리먼트.removeChild(클릭된img엘리먼트)
+            ev.target.parentElement.removeChild(ev.target);
+            //cartDiv.removeChild(ev.target); 으로 넣어도 됨.
+            }
+
+        };
     </script>
 </body>
 </html>
