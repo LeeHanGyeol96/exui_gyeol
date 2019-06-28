@@ -18,9 +18,11 @@
 <body>
     <table>
         <caption>상품목록</caption>
-        <thead><th>상품번호</th><th>상품명</th><th>가격</th></thead>
+        <thead><tr><th>상품번호</th><th>상품명</th><th>가격</th></tr></thead>
         <tbody id="prods"></tbody>
-        <tfoot><td colspan="3">상품번호:<input type="text" id="pno" /> 상품명:<input type="text" id="pname" />가격:<input type="text" id="price" /><button id="save">저장</button></td></tfoot>
+        <tfoot><tr>
+            <td colspan="3">상품번호:<input type="text" id="pno" /> 상품명:<input type="text" id="pname" />
+                가격:<input type="text" id="price" /><button id="save">저장</button></td></tfoot></tr>
     </table>
     <script>
         // 상품객체들을 저장하는 배열 생성
@@ -32,10 +34,16 @@
 
         //1. 현재 prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 출력
         var prodsIn = document.querySelector('#prods');
+        
+        function printProdList(){
+            var html = '';
         for (var i = 0; i < prodList.length; i++){
             var p = prodList[i];
-            prodsIn.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '<tr>';
+             html += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '<tr>';
+            }
+            prodsIn.innerHTML = html;
         }
+        printProdList();    //함수 실행문
         //2. 저장 버튼을 클릭하면, 입력한 상품 정보를 prodList 에 추가하고,
         //  prodList 에 저장되어 있는 상품들의 정보를 상품목록 테이블의 tbody에 다시 출력
         //  input 엘리먼트에 입력되어 있는 값들은 초기화
@@ -45,18 +53,13 @@
         var saveBT = document.querySelector('#save');
 
         saveBT.onclick = function(){
-             var pno = pnoI.value;
-             var pname = pnameI.value;
-             var price = priceI.value;
-
-            prodList.push(pnoI, pnameI, priceI);
-
-            tbo.innerHTML = '';
-        
-            for (var i = 0; i < prodList.length; i++){
-            var p = prodList[i];
-            prodsIn.innerHTML += '<tr>' + '<td>' + p.no + '</td>' + '<td>' + p.name + '</td>' + '<td>' + p.price + '</td>' + '<tr>';
-            }
+            var noVal = Number(pnoI.value);
+            var priceVal = Number(priceI.value);
+            prodList.push( { no: pnoI.value, name: pnameI.value, price: priceI.value });
+            printProdList();
+            pnoI.value = '';
+            pnameI.value = '';
+            priceI.value = '';
         };
         
 
